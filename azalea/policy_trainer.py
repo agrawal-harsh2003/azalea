@@ -10,9 +10,8 @@ import torch
 from torch import optim
 from torch.optim import lr_scheduler
 from torch.utils.data import DataLoader
-
+from .monitor import Monitor
 from .azalea_agent import AzaleaAgent
-from .monitor import Monitor as monitor
 from .parallel_player import Player
 from .prep import torch_batch_replays
 from .process_pool import ProcessPool
@@ -28,7 +27,8 @@ def train(policy, config, rundir, *,
 
     os.makedirs(rundir, exist_ok=True)
     os.makedirs(f'{rundir}/checkpoints', exist_ok=True)
-    monitor.init(f'{rundir}/log', log_steps=10)
+    monitor = Monitor()
+    monitor.init(logdir=f'{rundir}/log', log_steps=10)
 
     np.random.seed(config['seed'])
     torch.manual_seed(config['seed'])

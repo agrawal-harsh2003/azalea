@@ -75,13 +75,13 @@ class Network(nn.Module):
         x = self.resblocks(x)
         # value head
         v = self.relu(self.value_bn1(self.value_conv1(x)))
-        v = v.view(v.size(0), -1)
+        v = v.reshape(v.size(0), -1)
         v = self.relu(self.value_fc2(v))
         v = self.value_fc3(v)
         value = torch.tanh(v).squeeze(1)
         # policy head
         p = self.relu(self.move_bn1(self.move_conv1(x)))
-        p = p.view(p.size(0), -1)
+        p = p.reshape(p.size(0), -1)
         return value, p
 
     def run(self, batch, *, compute_loss=False):

@@ -7,8 +7,9 @@ import json
 import numpy as np
 import torch
 
-from .policy_trainer import PolicyTrainer
+from .policy_trainer import train as PolicyTrainer
 from .monitor import monitor
+from .policy import Policy
 
 
 class Experiment:
@@ -21,7 +22,11 @@ class Experiment:
         os.makedirs(f'{self.rundir}/checkpoints', exist_ok=True)
         with open(f'{self.rundir}/config.json', 'w') as f:
             json.dump(config, f)
-        self.trainer = PolicyTrainer(config)
+
+        policy = Policy()
+        policy.initialize(config)
+
+        self.trainer = PolicyTrainer(policy, config, self.rundir)
         self.train_iter = train(self.trainer, config, self.save_checkpoint)
 
     def close(self):
