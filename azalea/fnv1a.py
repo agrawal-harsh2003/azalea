@@ -1,9 +1,6 @@
-
 from numba import njit, uint32
 
-# https://softwareengineering.stackexchange.com/a/145633
-
-@njit('uint32(int32[:])')
+@njit
 def fnv1a(seq):
     """32-bit FNV-1a hash for 32-bit sequences
     :param seq: signed 32-bit sequence

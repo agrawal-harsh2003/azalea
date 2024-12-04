@@ -12,7 +12,7 @@ from torch.optim import lr_scheduler
 from torch.utils.data import DataLoader
 
 from .azalea_agent import AzaleaAgent
-from .monitor import monitor
+from .monitor import Monitor as monitor
 from .parallel_player import Player
 from .prep import torch_batch_replays
 from .process_pool import ProcessPool

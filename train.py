@@ -6,6 +6,7 @@ import yaml
 import click
 
 import azalea as az
+from azalea import experiment as azexp
 
 
 @click.command()
@@ -28,14 +29,14 @@ def main(config, rundir, model, replaybuf, startpos):
     az.redirect_all_output(f'{rundir}/train.log')
     logging.info(f'azalea {az.__version__}')
 
-    expt = az.Experiment(rundir)
+    expt = azexp.Experiment(rundir)
 
-    config = yaml.load(open(config))
+    config = yaml.load(open(config), Loader=yaml.FullLoader)
     if config['device'] == 'auto':
         config['device'] = 'cuda' if torch.cuda.is_available() else 'cpu'
 
     if startpos:
-        ss = yaml.load(open(startpos))
+        ss = yaml.load(open(startpos), Loader=yaml.FullLoader)
         config['start_positions'] = [s['fen'] for s in ss]
 
     expt.restart(config)

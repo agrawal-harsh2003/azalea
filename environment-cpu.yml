@@ -1,18 +1,18 @@
 name: azalea
 channels:
-- conda-forge
-- pytorch
-- defaults
+  - conda-forge
+  - pytorch
+  - defaults
 dependencies:
-- python=3.6
-- numba=0.36.*
-- numpy=1.13.*
-- pytorch-cpu=0.4.1
-- pyyaml=3.11.*
-- scipy=1.0.*
-- click=6.*
-- mkl
-- tensorflow=1.8.*
-- tensorboard=1.8.*
-- tensorboardX=1.2.*
-- smart_open=1.6.*
+  - python=3.10
+  - numba>=0.56
+  - numpy>=1.23
+  - pytorch-cpu>=1.12
+  - pyyaml>=6.0
+  - scipy>=1.8
+  - click>=8.0
+  - mkl
+  - tensorflow>=2.10
+  - tensorboard>=2.10
+  - tensorboardX>=2.5
+  - smart_open>=6.0

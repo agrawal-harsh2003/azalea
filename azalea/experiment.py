@@ -15,8 +15,8 @@ class Experiment:
     def __init__(self, rundir):
         os.makedirs(rundir, exist_ok=True)
         self.rundir = rundir
-        monitor.init(f'{self.rundir}/log', log_steps=10)
-
+        print(self.rundir)
+        monitor.init(logdir=f'{self.rundir}/log', log_steps=10)
     def restart(self, config):
         os.makedirs(f'{self.rundir}/checkpoints', exist_ok=True)
         with open(f'{self.rundir}/config.json', 'w') as f:
