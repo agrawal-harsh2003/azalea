@@ -5,6 +5,7 @@ import time
 from functools import partial
 from typing import Callable, Optional
 
+from tqdm import tqdm
 import numpy as np
 import torch
 from torch import optim
@@ -77,7 +78,7 @@ def train(policy, config, rundir, *,
     loss = 0
     step = 0
     start_time = time.time()
-    for epoch in range(1, config['total_epochs'] + 1):
+    for epoch in tqdm(range(1, config['total_epochs'] + 1)):
         scheduler.step()
         for batch in loader:
             monitor.step = step

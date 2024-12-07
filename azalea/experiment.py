@@ -3,7 +3,7 @@ import os
 import logging
 import time
 import json
-
+from tqdm import tqdm
 import numpy as np
 import torch
 
@@ -76,7 +76,7 @@ class Experiment:
 def train(trainer, config, save):
     loss = 0
     t0 = time.time()
-    for step in range(config['total_steps']):
+    for step in tqdm(range(config['total_steps'])):
         monitor.step = step
         metrics = trainer.step()
         loss += metrics['loss']

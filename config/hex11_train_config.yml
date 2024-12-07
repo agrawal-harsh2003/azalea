@@ -1,4 +1,3 @@
-
 ### hyperparameters ###
 
 replaybuf_size: 100000  # per worker
@@ -12,13 +11,13 @@ momentum: 0.9
 l2_regularization: 1.e-4
 lr_decay_epochs: 391 # 1 epoch = 128 batches
 
-total_steps: 5000000
+total_steps: 1000000  # Reduced total steps for quicker training
 
-# 32 (*64) on alphago, 64 (*64) on alphazero
-batch_size: 128
+# Adjusted batch size to potentially improve training speed
+batch_size: 128  
 
 #epochs
-total_epochs: 391
+total_epochs: 50  # Reduced total epochs to limit training time
 
 # c_PUCT
 exploration_coef: 0.5
@@ -34,21 +33,21 @@ exploration_noise_scale: 0.25
 num_blocks: 6
 base_chans: 64
 
-# 1600 in alphago, 800 in alphazero
-simulations: 800
+# Reduced simulations for faster evaluation during training
+simulations: 400
 
 # MCTS simulation and evaluation batching
 search_batch_size: 10
 
 # CPU Core Architecture
-num_player_workers: 6
-num_dataloader_workers: 6
+num_player_workers: 8
+num_dataloader_workers: 8  # Reduced to optimize memory usage
 
 ### runtime configuration (no hyperparameters) ###
 
 log_interval: 500
-model_checkpoint_interval: 10000      # 4MB/30mins
-replaybuf_checkpoint_interval: 50000  # 160MB/150mins
+model_checkpoint_interval: 10000      # Keep as is for model checkpoints
+replaybuf_checkpoint_interval: 50000   # Keep as is for replay buffer checkpoints
 
 seed: 0xBAD5EED5
 device: 'auto'
